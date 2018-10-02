@@ -44,9 +44,11 @@ public class CryptoCurvesOperations {
 
     private static boolean validatePoint(Point point){
 
+
         BigDecimal ysqr = new BigDecimal(Math.pow(point.getY(), 2)).setScale(6, BigDecimal.ROUND_HALF_DOWN);
         BigDecimal funct = new BigDecimal(Math.pow(point.getX(), 3) + point.getX()*a + b).setScale(6, BigDecimal.ROUND_HALF_DOWN);
-        if(!ysqr.equals(funct)){
+        System.out.println(ysqr + " " + funct);
+        if(!ysqr.abs().equals(funct.abs())){
             return  false;
         }
         return true;
@@ -56,8 +58,17 @@ public class CryptoCurvesOperations {
         if(!inited){
             throw  new RuntimeException("You must init criptoCurve with your a , b params.\n Call \"init\" method");
         }
+
         double x = (Math.random()*100);
-        double y = Math.sqrt(Math.pow(x, 3) + x*a + b);
+        if(Math.random() < 0.5){
+            x = -x;
+        }
+        double res = Math.pow(x, 3) + x*a + b;
+        if(res < 0){
+            return null;
+        }
+        double y = Math.sqrt(res);
+
         return new Point(x, y);
     }
 }

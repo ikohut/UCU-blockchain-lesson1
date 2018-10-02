@@ -31,6 +31,7 @@ public class Main {
             Point res = CryptoCurvesOperations.add(pointOne, pointTwo);
             plotDrawer.addDot(pointOne);
             plotDrawer.addDot(pointTwo);
+
             plotDrawer.addResDot(res);
         }
         plotDrawer.showPlot();

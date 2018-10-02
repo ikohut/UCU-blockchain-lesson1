@@ -45,6 +45,7 @@ public class CryptoCurvesOperations {
     private static boolean validatePoint(Point point){
 
 
+
         BigDecimal ysqr = new BigDecimal(Math.pow(point.getY(), 2)).setScale(6, BigDecimal.ROUND_HALF_DOWN);
         BigDecimal funct = new BigDecimal(Math.pow(point.getX(), 3) + point.getX()*a + b).setScale(6, BigDecimal.ROUND_HALF_DOWN);
         System.out.println(ysqr + " " + funct);

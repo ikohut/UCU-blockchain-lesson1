@@ -28,6 +28,7 @@ public class PlotDrawer {
     }
     public void  addResDot(Point resulDot){
         results.add(resulDot);
+
     }
 
     public void showPlot(){

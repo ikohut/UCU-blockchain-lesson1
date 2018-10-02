@@ -1,4 +1,3 @@
-# the class for addition operation on elliptic curve
 class Point:
     def __init__(self, x, y):
         self.x = x
@@ -22,13 +21,14 @@ class Point:
         if self.y == 0:
             return (float('inf'), float('inf'))
         # slope (gradient) =(3x2 + a)/(2y)
-        slope = 3 * (self.x**2 + a)/(2*self.y)
+        print("here")
+        slope = (3 * self.x**2 + a)/(2*self.y)
         answer_x = slope**2 - 2*self.x
-        answer_y = slope*(self.x - answer_x)
+        answer_y = slope*(self.x - answer_x) - self.y
         return answer_x, answer_y
 
 
-a = Point(2, 2)
-b = Point(1, 3)
+a = Point(5, 5)
+b = Point(5, 5)
 print(a.add(b, 1))
 

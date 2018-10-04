@@ -3,14 +3,20 @@ class Point:
         self.x = x
         self.y = y
 
-    def add(self, other):
+    def _check_type(self, other):
         assert type(other) == type(self)
-        self.x += other.x
-        self.y += other.y
+
+    def add(self, other):
+        self._check_type(other)
+        self.x = self.x + other.x
+        self.y = self.y + other.y
         return self  # for chaining
 
     def __repr__(self):
-        return "Point at (%d, %d)" % (self.x, self.y)
+        return "Point at (%f, %f)" % (self.x, self.y)
+
+    def get_cords(self):
+        return (self.x, self.y)
 
 
 if __name__ == "__main__":

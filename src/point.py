@@ -12,11 +12,15 @@ class Point:
         self.y = self.y + other.y
         return self  # for chaining
 
+    def get_cords(self):
+        return (self.x, self.y)
+
+    def __eq__(self, other):
+        return self.x == other.x and self.y == other.y
+
     def __repr__(self):
         return "Point at (%f, %f)" % (self.x, self.y)
 
-    def get_cords(self):
-        return (self.x, self.y)
 
 
 if __name__ == "__main__":

@@ -12,6 +12,7 @@ class PointOnCryptoCurve(Point):
         if self == other:
             l = 3 * (self.x ** 2) / (2 * self.y)
         else:
+            assert self.x != other.x
             l = (other.y - self.y) / (other.x - self.x)
 
         return self._add(other, l)

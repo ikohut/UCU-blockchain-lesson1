@@ -47,9 +47,10 @@ def is_prime(n):
 
 
 if __name__ == "__main__":
+    # curve = {"a": 0, "b": 7, "p": 100000000003}
+    curve = {"a": 0, "b": 7, "p": 131}
 
-    curve = {"a": 0, "b": 7, "p": 100000000003}
     res = get_point_on_curve(curve)
-    pp1 = (269294, 34361.0)
-    pp2 = (54277204636, 239885.0)
+
+
     print(res)

@@ -1,10 +1,9 @@
 import random
+from crypto_curve import CryptoCurve
 
 
 def get_point_on_curve(curve):
-    a = curve["a"]
-    b = curve["b"]
-    p = curve["p"]
+    a, b, p = curve.get_params()
 
     trial = 0
 
@@ -20,6 +19,7 @@ def get_point_on_curve(curve):
             return (x, y)
 
     print("no points found")
+    return (-1, -1)
 
 
 def multiplicative_inverse(num, mod):
@@ -49,8 +49,8 @@ def is_prime(n):
 if __name__ == "__main__":
     # curve = {"a": 0, "b": 7, "p": 100000000003}
     curve = {"a": 0, "b": 7, "p": 131}
+    crypto_curve = CryptoCurve(**curve)
 
-    res = get_point_on_curve(curve)
-
+    res = get_point_on_curve(crypto_curve)
 
     print(res)

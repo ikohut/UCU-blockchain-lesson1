@@ -37,7 +37,7 @@ class Point():
         elif self.x is None:
             self.x = other.x
             self.y = other.y
-        elif other.x is None:
+        elif other.x is None:  # empty 'if' to be consistent
             pass
         elif self.x == other.x:   # p1 == -p2
             self.x = None

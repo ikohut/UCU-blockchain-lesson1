@@ -13,6 +13,8 @@ class Point:
         nu = self.y - lamda * self.x
         x3 = lamda ** 2 - self.x - other.x
         y3 = -(lamda * x3 + nu)
+        self.x = x3
+        self.y = y3
         return (x3, y3)
 
 

@@ -41,23 +41,3 @@ class PointOnCryptoCurve(Point):
         rigthhs = x ** 3 + a * x + b
         return lefths % p == rigthhs % p
 
-
-if __name__ == "__main__":
-    def test_addition(a, b):
-        print("Adding 2 points on crypto curve")
-        print(a, b)
-        a.add(b)
-        print("Result: %s" % a)
-        print("It is on crypto curve as well: %s\n" % PointOnCryptoCurve.point_is_on_curve(*a.get_cords()))
-
-
-    a = PointOnCryptoCurve(5, 1.0)
-    b = PointOnCryptoCurve(9, 9.0)
-
-    c = PointOnCryptoCurve(20, 4)
-    d = PointOnCryptoCurve(38, 11)
-
-    test_addition(a, b)
-    test_addition(a, c)
-    test_addition(b, b)
-    test_addition(c, d)

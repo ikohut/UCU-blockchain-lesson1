@@ -8,18 +8,23 @@ class Point:
 
     # Equation: y^2 = x^3 + ax + b
     def add(self, other, curve, mod):
-        point1_on_curve = (self.y**2) % mod == (self.x**3 + curve[0]*self.x + curve[1]) % mod
-        point2_on_curve = (other.y**2) % mod == (other.x**3 + curve[0]*other.x + curve[1]) % mod
 
-        if not point1_on_curve and not point2_on_curve:
+
+        if self.x == float("inf") and self.y == float("inf") and other.x == float("inf") and other.y == float("inf"):
+            return (float("inf"), float("inf"))
+
+        elif self.x == float("inf") and self.y == float("inf"):
+            return other
+
+        elif other.x == float("inf") and other.y == float("inf"):
+            return self
+
+        point1_on_curve = (self.y ** 2) % mod == (self.x ** 3 + curve[0] * self.x + curve[1]) % mod
+        point2_on_curve = (other.y ** 2) % mod == (other.x ** 3 + curve[0] * other.x + curve[1]) % mod
+
+        if not point1_on_curve or not point2_on_curve:
             return "One of the points is not on the curve"
 
-        if isinstance(self, str) and isinstance(other, str):
-            return (float("inf"), float("inf"))
-        elif isinstance(self, str):
-            return other
-        elif isinstance(other, str):
-            return self
         elif self.x == other.x and self.y == other.y:
             delta_upper = 3 * self.x**2 + curve[0]
             delta_lower = 2*self.y
@@ -35,12 +40,12 @@ class Point:
         slope = (delta_upper*delta_lower_MI) % mod
         answer_x = (slope**2 - self.x - other.x) % mod
         answer_y = (slope*(self.x - answer_x) - self.y) % mod
-        return float(answer_x), float(answer_y)
+        return Point(float(answer_x), float(answer_y))
 
 
-a = Point(0, 3)
+a = Point(float("inf"), float("inf"))
 b = Point(0, 2)
 result = a.add(b, (1, 4), 17)
-print(result)
+print(result.x, result.y)
 
 

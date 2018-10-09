@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
+
 def plot(curve, P, Q, U):
     a = curve.a
     b = curve.b

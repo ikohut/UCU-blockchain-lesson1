@@ -31,11 +31,5 @@ U = P+Q
 print(U)
 plot(C, P_copy, Q, U)
 
-# case where P + P + Q = 0 (two points on curve)
-P = Point(C, 3, 5)
-P_copy = copy.copy(P)
-Q = Point(C, 3, 5)
-U = P+Q
-print(U)
-plot(C, P_copy, Q, U)
+
 

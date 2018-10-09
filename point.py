@@ -55,3 +55,9 @@ point2 = Point(6, 0)
 point = point1.add(point2,(3,4),17)
 
 print(point.x, point.y)
+
+point1 = Point(float("inf"), float("inf"))
+point2 = Point(6, 0)
+point = point1.add(point2,(3,4),17)
+
+print(point.x, point.y)

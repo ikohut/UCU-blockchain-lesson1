@@ -1,5 +1,6 @@
 from crypto import CryptoCurve
 
+
 class Point:
 
     def __init__(self, crypto_curve, x=-1, y=-1):
@@ -24,7 +25,7 @@ class Point:
 
     def is_on_curve(self):
         print(self.x, self.y)
-        return (self.x** 3 + self.x * self.a + self.b) % self.p == self.y ** 2 % self.p
+        return (self.x**3 + self.x * self.a + self.b) % self.p == self.y ** 2 % self.p
 
     def multiplicative_inverse(self, num, mod):
         n = num
@@ -43,24 +44,23 @@ class Point:
             return (x_old + m) % m
 
     def add(self, other):
-        l_numerator = (other.y - self.y)
-        l_denominator = (other.x - self.x)
+        numerator = (other.y - self.y)
+        denominator = (other.x - self.x)
 
-
-        if self == other:
-            l_denominator = (2 * self.y)
-            l_numerator = 3 * (self.x ** 2)
-        if self.x == other.x:
+        if self.x == other.x and self.y == other.y:
+            denominator = (2 * self.y)
+            numerator = 3 * (self.x ** 2)
+        elif self.x == other.x:
             return "point at infinity"
 
         mod = self.p
-        l_denominator_MI = self.multiplicative_inverse(l_denominator, mod)
-        l = (l_numerator * l_denominator_MI) % mod
-        x_res = (l ** 2 - self.x - other.x) % mod
-        y_res = (l * (self.x - x_res) - self.y) % mod
-        self.x = x_res
-        self.y = y_res
-        print(x_res, y_res)
+        denominator_inverse = self.multiplicative_inverse(denominator, mod)
+        l = (numerator * denominator_inverse) % mod
+        x_new = (l ** 2 - self.x - other.x) % mod
+        y_new = (l * (self.x - x_new) - self.y) % mod
+        self.x = x_new
+        self.y = y_new
+        print(x_new, y_new)
         return self
 
 

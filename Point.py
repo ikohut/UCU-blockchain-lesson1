@@ -43,9 +43,10 @@ class Point:
         return Point(float(answer_x), float(answer_y))
 
 
-a = Point(float("inf"), float("inf"))
-b = Point(0, 2)
-result = a.add(b, (1, 4), 17)
-print(result.x, result.y)
+point1 = Point(float("inf"), float("inf"))
+point2 = Point(6, 0)
 
+point = point1.add(point2, (3, 4), 17)
+
+print(point.x, point.y)
 

@@ -20,11 +20,3 @@ class Point:
 
         self.x = third_point_x
         self.y = third_point_y
-
-
-if __name__ == "__main__":
-    point = Point(2)
-
-    for i in range(10):
-        print("x:", point.x, "y:", point.y)
-        point.add(i)

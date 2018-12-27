@@ -9,22 +9,22 @@ class Curve(object):
     __repr__ = __str__
 
     def __contains__(self, item):
-        assert isinstance(item, Point)
-        return item.y ** 2 == item.x ** 3 + (item.x ** 2) * self.a + self.b
+        assert isinstance(item, Point), "Should be {Point} object"
+        return item.y ** 2 == item.x ** 3 + item.x * self.a + self.b
 
 
 class Point(object):
     def __init__(self, x, y, curve):
         self.x = x
         self.y = y
-        assert type(curve) == Curve, "Should be {Curve} object"
+        assert isinstance(curve, Curve), "Should be {Curve} object"
         self.curve = curve
         assert self in self.curve
 
     def __eq__(self, other):
         return self.x == other.x and self.y == other.y
 
-    def __iadd__(self, other):
+    def __add__(self, other):
         if isinstance(other, Ideal):
             return self
 
@@ -37,14 +37,12 @@ class Point(object):
                 lambda_up = 3 * (self.x ** 2) + self.curve.a
                 lambda_down = 2 * self.y
             else:
-                raise Ideal(self.curve)
+                return Ideal(self.curve)
 
         lambda_ = lambda_up / lambda_down
         x = lambda_ ** 2 - self.x - other.x
         y = lambda_ * (self.x - x) - self.y
-        self.x = x
-        self.y = y
-        return self
+        return Point(x, y, self.curve)
 
     def __str__(self):
         return "x:{}; y:{}".format(self.x, self.y)
@@ -56,9 +54,6 @@ class Ideal(Point):
 
     def __str__(self):
         return "Ideal"
-
-    def __neg__(self):
-        return self
 
     def __add__(self, other):
         return other
